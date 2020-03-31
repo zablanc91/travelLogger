@@ -18,4 +18,11 @@ module.exports = (app) => {
     app.get('/api/current_user', (req, res) => {
         res.send(req.user);
     });
+
+    //on log out, take the cookie and get rid of user id
+    //also need to send response so the browser terminate the session
+    app.get('/api/logout', (req, res) => {
+        req.logout();
+        res.send(req.user);
+    });
 }
