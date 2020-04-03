@@ -35,12 +35,4 @@ app.use(passport.session());
 //let routes have access to app
 require('./routes/authRoutes')(app);
 
-//test route at root
-app.get(
-    '/', 
-    (req, res) => {
-        res.send({hello: 'how low?'});
-    }
-);
-
 app.listen(2020);

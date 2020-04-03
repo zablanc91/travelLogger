@@ -3,8 +3,8 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './Header';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import AddLog from './AddLog';
 
-const Landing = () => <h3>Landing</h3>;
 
 class App extends React.Component{
     //call our action to set state by checking to see if a user is logged in 
@@ -17,7 +17,7 @@ class App extends React.Component{
             <div className="container">
                 <Header />
                 <BrowserRouter>
-                    <Route exact path='/' component={Landing} />
+                    <Route exact path='/add' component={AddLog} />
                 </BrowserRouter>
             </div>
         );

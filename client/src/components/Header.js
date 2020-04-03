@@ -13,7 +13,14 @@ const Header = (props) => {
                 );
             default:
                 return(
-                    <a className="right" href="api/logout">Logout</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="/add">Add Entry</a>
+                        </li>
+                        <li>
+                            <a href="/api/logout">Logout</a>
+                            </li>
+                    </ul>
                 );
         }
     }

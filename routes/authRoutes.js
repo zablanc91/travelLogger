@@ -12,7 +12,10 @@ module.exports = (app) => {
     //route for auth callback, will run arrow funct in passport's 2nd arg above
     app.get(
         '/auth/google/callback', 
-        passport.authenticate('google')
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/');
+        }
     );
 
     app.get('/api/current_user', (req, res) => {
@@ -23,6 +26,6 @@ module.exports = (app) => {
     //also need to send response so the browser terminate the session
     app.get('/api/logout', (req, res) => {
         req.logout();
-        res.send(req.user);
+        res.redirect('/');
     });
 }
