@@ -27,7 +27,7 @@ const Header = (props) => {
 
     return(
         <nav>
-            <div className="nav-wrapper">
+            <div className="nav-wrapper teal">
                 <a 
                     href="/" 
                     className="left brand-logo"

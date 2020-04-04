@@ -24,7 +24,7 @@ const logEntrySchema = new Schema({
             required: 'You must supply an address.'
         }
     },
-    photo: String
+    image: String
 });
 
 mongoose.model('logEntries', logEntrySchema);

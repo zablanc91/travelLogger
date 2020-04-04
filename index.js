@@ -7,9 +7,12 @@ const passport = require('passport');
 //import models
 //need to define User collection before requiring passport.js since it uses Users!
 require('./models/User');
+require('./models/LogEntry');
 
 //services - helper modules
 require('./services/passport');
+//put form values in req.body
+app.use(express.urlencoded({ extended: true }));
 
 const mongoose = require('mongoose');
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true,
@@ -34,5 +37,6 @@ app.use(passport.session());
 
 //let routes have access to app
 require('./routes/authRoutes')(app);
+require('./routes/logRoutes')(app);
 
 app.listen(2020);
