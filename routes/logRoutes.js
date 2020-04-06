@@ -6,12 +6,14 @@ module.exports = (app) => {
     app.post(
         '/api/add',
         async (req, res) => {
+
+            console.log(req.file);
             //lng then lat inside coordinates array
             const logToMake = {
                 name: req.body.name,
                 description: req.body.description,
                 location: {
-                    coordinates: [parseInt(req.body.lng),parseInt(req.body.lat)],
+                    coordinates: [parseInt(req.body.lng), parseInt(req.body.lat)],
                     address: req.body.address
                 },
                 image: req.body.image
