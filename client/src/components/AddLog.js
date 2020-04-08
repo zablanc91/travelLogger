@@ -14,9 +14,18 @@ const AddLog = () => {
     //need to add an event listener for address input then make a google maps places autocomplete
     const handleAddress = () => {
         let inputAddress = document.getElementById("address");
-       
+
+        //need to prevent the form from submitting if the user presses 'enter' while typing in Address
+        inputAddress.addEventListener('keydown', (e) => {
+            if(e.keyCode === 13){
+                e.preventDefault();
+            }
+        });
+
         inputAddress.addEventListener("keyup", (e) => {
             const dropdown = new google.maps.places.Autocomplete(inputAddress);
+
+            //auto populate lat and lng when an address is selected
             dropdown.addListener('place_changed', () => {
                 const place = dropdown.getPlace();
                 const lat = place.geometry.location.lat();
@@ -33,7 +42,7 @@ const AddLog = () => {
         <div className="row">
             <Script url={placesAPI} onLoad={handleAddress} />
             <h3 className="center-align">New Travel Log Entry</h3>
-            <form className="col s12" action="/api/add" method="POST">
+            <form className="col s12" action="/api/add" method="POST" encType="multipart/form-data">
                 <div className="row">
                     <div className="input-field col s12">
                         <input id="name" type="text" name="name" required />
@@ -53,10 +62,10 @@ const AddLog = () => {
                     <div className="file-field input-field">
                         <div className="btn">
                             <span>File</span>
-                            <input id="image" type="file" name="image" onChange={e => handleImageName(e)} />
+                            <input id="image" type="file" name="image" accept="image/jpg, image/png" onChange={e => handleImageName(e)} />
                         </div>
                         <div className="file-path-wrapper">
-                            <input className="validate file-path" id="imageLabel" type="text" placeholder="Upload file" />
+                            <input className="validate file-path" name="imageLabel" id="imageLabel" type="text" placeholder="Upload file" />
                         </div>
                     </div>
                 </div>
