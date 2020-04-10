@@ -2,14 +2,16 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './Header';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { fetchUser, fetchLogs } from '../actions';
 import AddLog from './AddLog';
+import Map from './Map';
 
 
 class App extends React.Component{
-    //call our action to set state by checking to see if a user is logged in 
+    //call our action to set state (user logged in?, get logs) 
    componentDidMount(){
        this.props.fetchUser();
+       this.props.fetchLogs();
    }
 
     render(){
@@ -18,6 +20,7 @@ class App extends React.Component{
                 <Header />
                 <BrowserRouter>
                     <Route exact path='/add' component={AddLog} />
+                    <Route exact path='/' component={Map} />
                 </BrowserRouter>
             </div>
         );
@@ -25,4 +28,4 @@ class App extends React.Component{
 };
 
 //no need for reducers with mapStateToProps so null arg, add actions to props
-export default connect(null, actions)(App);
+export default connect(null, {fetchUser, fetchLogs})(App);
