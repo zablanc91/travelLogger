@@ -4,7 +4,7 @@ import Header from './Header';
 import { connect } from 'react-redux';
 import { fetchUser, fetchLogs } from '../actions';
 import AddLog from './AddLog';
-import Map from './Map';
+import MapDisplay from './MapDisplay';
 
 
 class App extends React.Component{
@@ -20,7 +20,7 @@ class App extends React.Component{
                 <Header />
                 <BrowserRouter>
                     <Route exact path='/add' component={AddLog} />
-                    <Route exact path='/' component={Map} />
+                    <Route exact path='/' component={MapDisplay} />
                 </BrowserRouter>
             </div>
         );

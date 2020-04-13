@@ -8,6 +8,9 @@ export const fetchUser = () => async (dispatch) => {
 
 export const fetchLogs = () => async (dispatch) => {
     const res = await axios.get('/api/logs');
-    console.log('successfully called fetchLogs');
     dispatch({type: 'FETCH_LOGS', payload: res.data});
+};
+
+export const changeViewport = (viewport) => (dispatch) => {
+    dispatch({type: 'CHANGE_VIEWPORT', payload: viewport});
 };
