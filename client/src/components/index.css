@@ -1,0 +1,10 @@
+.marker-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.marker-btn span {
+    width: 25px;
+    height: 25px;
+}

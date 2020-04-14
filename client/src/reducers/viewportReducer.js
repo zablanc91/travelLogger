@@ -1,12 +1,12 @@
 //reducer to change state of viewport for our Mapbox
 
-//default: Ottawa, Canada
+//default: San Diego, California
 const defaultViewport = {
-    latitude: 45.4211,
-    longitude: -75.6903,
+    latitude: 32.7157,
+    longitude: -117.1611,
     width: '100%',
     height: '80vh',
-    zoom: 7
+    zoom: 5
 };
 
 export default function(state = defaultViewport, action){
