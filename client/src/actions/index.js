@@ -14,3 +14,7 @@ export const fetchLogs = () => async (dispatch) => {
 export const changeViewport = (viewport) => (dispatch) => {
     dispatch({type: 'CHANGE_VIEWPORT', payload: viewport});
 };
+
+export const setSelectedLog = (selectedLog) => (dispatch) => {
+    dispatch({type:'SET_SELECTED_LOG', payload: selectedLog});
+};

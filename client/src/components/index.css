@@ -8,3 +8,17 @@
     width: 25px;
     height: 25px;
 }
+
+.popup_title {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* overlay on top of Mapbox popup so we can close popup when clicking outside */
+.popup_overlay {
+    background-color: transparent;
+    position:fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99998;
+}
