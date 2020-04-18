@@ -5,7 +5,7 @@ const defaultViewport = {
     latitude: 32.7157,
     longitude: -117.1611,
     width: '100%',
-    height: '80vh',
+    height: '85vh',
     zoom: 5
 };
 

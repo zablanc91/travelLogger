@@ -10,14 +10,41 @@ class MapDisplay extends React.Component{
         this.props.fetchLogs();
     }
 
-    render() {
-        if(this.props.logs.length === 0 ){
+    renderMarkers(){
+        return this.props.logs.map((log) => {
             return(
-                <div>
-                    Loading...
-                </div>
+                <Marker 
+                    latitude={log.location.coordinates[1]} 
+                    longitude={log.location.coordinates[0]} 
+                    key={log._id} >
+                        <button className="marker-btn" onClick={(e) => {
+                            e.preventDefault();
+                            this.props.setSelectedLog(log);
+                        }} >
+                            <span>✈</span>
+                        </button>
+                </Marker>
             );
-        }
+        });
+    }
+
+    renderPopup(){
+        return(
+            <Popup latitude={this.props.selectedLog.location.coordinates[1]} longitude={this.props.selectedLog.location.coordinates[0]} onClose={() => {this.props.setSelectedLog(null)}} >
+                <div>
+                    <p className="popup_title" >
+                        {this.props.selectedLog.name}
+                    </p>
+                    <p>
+                        {this.props.selectedLog.description}
+                    </p>        
+                </div>
+            </Popup>
+        );
+    }
+
+    render() {
+        
         return (            
             <div style={{width: '100%', border: '1px solid black'}}>
                 <ReactMapGL 
@@ -25,37 +52,9 @@ class MapDisplay extends React.Component{
                     mapboxApiAccessToken={mapboxToken}
                     onViewportChange={newViewport => {this.props.changeViewport(newViewport)}}
                 >
-                    {this.props.logs.map((log) => {
-                        return(
-                            <Marker 
-                                latitude={log.location.coordinates[1]} 
-                                longitude={log.location.coordinates[0]} 
-                                key={log._id} >
-                                    <button className="marker-btn" onClick={(e) => {
-                                        e.preventDefault();
-                                        this.props.setSelectedLog(log);
-                                    }} >
-                                        <span>✈</span>
-                                    </button>
-                            </Marker>
-                        );
-                    })}
+                    {this.props.length !== 0 ? this.renderMarkers(): null}
 
-                    {this.props.selectedLog ? (
-                        <div className="popup_overlay" onClick={() => {this.props.setSelectedLog(null)}} >
-                            <Popup latitude={this.props.selectedLog.location.coordinates[1]} longitude={this.props.selectedLog.location.coordinates[0]} onClose={() => {this.props.setSelectedLog(null)}} >
-                                <div>
-                                    <p className="popup_title" >
-                                        {this.props.selectedLog.name}
-                                    </p>
-                                    <p>
-                                        {this.props.selectedLog.description}
-                                    </p>
-                                    
-                                </div>
-                            </Popup>
-                        </div>
-                    ) : null}
+                    {this.props.selectedLog ? this.renderPopup() : null}
                     
                     {this.props.viewport.latitude}
                     <br />

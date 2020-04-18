@@ -9,18 +9,30 @@ const Header = (props) => {
                 return;
             case false:
                 return(
-                    <a className="right" href="/auth/google">Login with Google</a>
+                    <>
+                        <li>
+                            <a href="/logs">
+                                Logs
+                            </a>
+                        </li>
+                    <li>
+                            <a href="/auth/google">Login with Google</a>
+                        </li>
+                    </>
                 );
             default:
                 return(
-                    <ul id="nav-mobile" className="right hide-on-med-and-down">
+                    <>
+                        <li>
+                            <a href="/logs">Logs</a>
+                        </li>
                         <li>
                             <a href="/add">Add Entry</a>
                         </li>
                         <li>
                             <a href="/api/logout">Logout</a>
-                            </li>
-                    </ul>
+                        </li>
+                    </>
                 );
         }
     }
@@ -34,7 +46,10 @@ const Header = (props) => {
                 >
                     Travel Logger
                 </a>
-                {renderContent()}
+                <ul className="right" >
+                    {renderContent()}
+                </ul>
+                
             </div>
         </nav>
     );

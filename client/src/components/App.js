@@ -4,6 +4,7 @@ import Header from './Header';
 import { connect } from 'react-redux';
 import { fetchUser} from '../actions';
 import AddLog from './AddLog';
+import ListLogs from './ListLogs';
 import MapDisplay from './MapDisplay';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -21,6 +22,7 @@ class App extends React.Component{
                 <BrowserRouter>
                     <Route exact path='/add' component={AddLog} />
                     <Route exact path='/' component={MapDisplay} />
+                    <Route exact path='/logs' component={ListLogs} />
                 </BrowserRouter>
             </div>
         );

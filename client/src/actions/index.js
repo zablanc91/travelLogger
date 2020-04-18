@@ -7,6 +7,7 @@ export const fetchUser = () => async (dispatch) => {
 };
 
 export const fetchLogs = () => async (dispatch) => {
+    console.log('called fetch logs action');
     const res = await axios.get('/api/logs');
     dispatch({type: 'FETCH_LOGS', payload: res.data});
 };

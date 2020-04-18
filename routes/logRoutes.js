@@ -31,11 +31,12 @@ module.exports = (app) => {
 
         //resize, jimp.read needs a filepath or buffer
         const image = await jimp.read(req.file.buffer);
-        await image.resize(800, jimp.AUTO);
+        await image.resize(400, 400);
+        console.log('done resizing');
 
-        //write to folder
-        await image.write(`./public/uploads/${req.file.originalname}`);
-
+        //write to folder in client
+        await image.write(`./client/public/uploads/${req.file.originalname}`);
+        console.log('done writing');
         //need to re-insert file name to body before saving to DB
         req.body.image = req.file.originalname;
         next();
