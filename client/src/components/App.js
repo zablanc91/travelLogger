@@ -7,6 +7,7 @@ import AddLog from './AddLog';
 import ListLogs from './ListLogs';
 import MapDisplay from './MapDisplay';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import ShowLog from './ShowLog';
 
 
 class App extends React.Component{
@@ -18,11 +19,14 @@ class App extends React.Component{
     render(){
         return (
             <div className="container">
-                <Header />
                 <BrowserRouter>
-                    <Route exact path='/add' component={AddLog} />
-                    <Route exact path='/' component={MapDisplay} />
-                    <Route exact path='/logs' component={ListLogs} />
+                    <div>
+                        <Header />
+                        <Route exact path='/add' component={AddLog} />
+                        <Route exact path='/' component={MapDisplay} />
+                        <Route exact path='/logs' component={ListLogs} />
+                        <Route exact path='/logs/:slug' component={ShowLog} />
+                    </div>
                 </BrowserRouter>
             </div>
         );

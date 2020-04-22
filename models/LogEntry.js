@@ -24,7 +24,12 @@ const logEntrySchema = new Schema({
             required: 'You must supply an address.'
         }
     },
-    image: String
+    image: String,
+    author: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'users',
+        required: 'You must supply an author.'
+    }
 });
 
 mongoose.model('logEntries', logEntrySchema);

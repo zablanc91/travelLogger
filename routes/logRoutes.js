@@ -32,11 +32,9 @@ module.exports = (app) => {
         //resize, jimp.read needs a filepath or buffer
         const image = await jimp.read(req.file.buffer);
         await image.resize(400, 400);
-        console.log('done resizing');
 
         //write to folder in client
         await image.write(`./client/public/uploads/${req.file.originalname}`);
-        console.log('done writing');
         //need to re-insert file name to body before saving to DB
         req.body.image = req.file.originalname;
         next();
@@ -56,7 +54,8 @@ module.exports = (app) => {
                     coordinates: [req.body.lng, req.body.lat],
                     address: req.body.address
                 },
-                image: req.body.image
+                image: req.body.image,
+                author: req.user._id
             };
             const log = await new LogEntry(logToMake).save();
             res.redirect('/');
@@ -68,6 +67,17 @@ module.exports = (app) => {
         async (req, res) => {
             const logEntries = await LogEntry.find();
             res.send(logEntries);
+        }
+    );
+
+    //given a slug from URL, fetch the log with the matching name
+    app.get('/api/:slug',
+        async (req, res) => {
+            const slugToName = req.params.slug.split('_').join(' ');
+            const matchedLog =  await LogEntry.findOne({
+                name: slugToName
+            });
+            res.send(matchedLog);
         }
     );
 }

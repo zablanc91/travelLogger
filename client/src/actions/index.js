@@ -7,7 +7,6 @@ export const fetchUser = () => async (dispatch) => {
 };
 
 export const fetchLogs = () => async (dispatch) => {
-    console.log('called fetch logs action');
     const res = await axios.get('/api/logs');
     dispatch({type: 'FETCH_LOGS', payload: res.data});
 };
@@ -18,4 +17,9 @@ export const changeViewport = (viewport) => (dispatch) => {
 
 export const setSelectedLog = (selectedLog) => (dispatch) => {
     dispatch({type:'SET_SELECTED_LOG', payload: selectedLog});
+};
+
+export const getLogBySlug = (slug) => async (dispatch) => {
+    const res = await axios.get(`/api/${slug}`);
+    dispatch({type: 'GET_LOG_BY_SLUG', payload: res.data});
 };

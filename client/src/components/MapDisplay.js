@@ -10,6 +10,7 @@ class MapDisplay extends React.Component{
         this.props.fetchLogs();
     }
 
+    //display markers on map for each log, on click set as selected log for to display popup
     renderMarkers(){
         return this.props.logs.map((log) => {
             return(

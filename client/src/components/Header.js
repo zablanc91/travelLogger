@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const Header = (props) => {
@@ -11,12 +12,14 @@ const Header = (props) => {
                 return(
                     <>
                         <li>
-                            <a href="/logs">
+                            <Link to="/logs">
                                 Logs
-                            </a>
+                            </Link>
                         </li>
-                    <li>
-                            <a href="/auth/google">Login with Google</a>
+                        <li>
+                            <a href="/auth/google" >
+                                Login with Google
+                            </a>
                         </li>
                     </>
                 );
@@ -24,10 +27,10 @@ const Header = (props) => {
                 return(
                     <>
                         <li>
-                            <a href="/logs">Logs</a>
+                            <Link to="/logs">Logs</Link>
                         </li>
                         <li>
-                            <a href="/add">Add Entry</a>
+                            <Link to="/add">Add Entry</Link>
                         </li>
                         <li>
                             <a href="/api/logout">Logout</a>
@@ -40,12 +43,9 @@ const Header = (props) => {
     return(
         <nav>
             <div className="nav-wrapper teal">
-                <a 
-                    href="/" 
-                    className="left brand-logo"
-                >
+                <Link to="/" className="left brand-logo">
                     Travel Logger
-                </a>
+                </Link>
                 <ul className="right" >
                     {renderContent()}
                 </ul>
