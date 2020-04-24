@@ -4,6 +4,7 @@ import { mapboxToken } from '../config/googleKeys';
 import { changeViewport, fetchLogs, setSelectedLog } from '../actions/';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import './index.css';
+import { Link } from 'react-router-dom';
 
 class MapDisplay extends React.Component{
     componentDidMount(){
@@ -31,11 +32,20 @@ class MapDisplay extends React.Component{
 
     renderPopup(){
         return(
-            <Popup latitude={this.props.selectedLog.location.coordinates[1]} longitude={this.props.selectedLog.location.coordinates[0]} onClose={() => {this.props.setSelectedLog(null)}} >
+            <Popup latitude={this.props.selectedLog.location.coordinates[1]} longitude={this.props.selectedLog.location.coordinates[0]} 
+            closeOnClick={false}
+            onClose={() => {
+                this.props.setSelectedLog(null);
+            }}
+            
+            >
                 <div>
-                    <p className="popup_title" >
-                        {this.props.selectedLog.name}
-                    </p>
+                    <Link to={`/logs/${this.props.selectedLog.name.split(" ").join("_")}`} onClick={() => {this.props.setSelectedLog(null)}} 
+                    >
+                        <p className="popup_title" >
+                            {this.props.selectedLog.name}
+                        </p>
+                    </Link>
                     <p>
                         {this.props.selectedLog.description}
                     </p>        

@@ -16,9 +16,23 @@ class ShowLog extends React.Component{
                 </div>
             )
         }
+
+        let {name, description, location, image} = this.props.matchedLog;
+
         return (
             <div>
-                {this.props.matchedLog.name}
+                <h3 className="log_header">{name}</h3>
+
+                <div className="row">
+                    <div className="log_text col s12 m6">
+                        <p> {location.address} </p>
+                        <p>{description} </p>
+                    </div>
+                    <div className="log_img col s12 m6">
+                        <img src={`/uploads/${image}`} alt={`picture of ${name}`} />
+                    </div>
+                </div>
+                
             </div>
         );
     }

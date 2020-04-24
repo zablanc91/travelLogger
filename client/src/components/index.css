@@ -22,3 +22,20 @@
     height: 100vh;
     z-index: 99998;
 }
+
+.log_header {
+    border-bottom: 1px solid black;
+    padding-bottom: 16px;
+}
+
+.log_text {
+    text-align: center;
+}
+
+.log_img {
+    text-align: center;
+}
+
+.log_img img {
+    max-width: 100%;
+}
