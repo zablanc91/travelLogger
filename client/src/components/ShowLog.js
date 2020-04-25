@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getLogBySlug } from '../actions';
+import { Link } from 'react-router-dom';
 
 class ShowLog extends React.Component{
     componentDidMount(){
@@ -17,7 +18,8 @@ class ShowLog extends React.Component{
             )
         }
 
-        let {name, description, location, image} = this.props.matchedLog;
+        let {slug} = this.props.match.params;
+        let {name, description, location, image, _id} = this.props.matchedLog;
 
         return (
             <div>
@@ -27,6 +29,25 @@ class ShowLog extends React.Component{
                     <div className="log_text col s12 m6">
                         <p> {location.address} </p>
                         <p>{description} </p>
+                        <button>
+                            <Link to={
+                                {
+                                    pathname: `/logs/${slug}/edit`,
+                                    formProps: {
+                                        name,
+                                        description,
+                                        image,
+                                        address: location.address,
+                                        latitude: location.coordinates[1],
+                                        longitude: location.coordinates[0],
+                                        log_id: _id
+                                    }
+                                }
+
+                            }>
+                                Edit
+                            </Link>
+                        </button>
                     </div>
                     <div className="log_img col s12 m6">
                         <img src={`/uploads/${image}`} alt={`picture of ${name}`} />

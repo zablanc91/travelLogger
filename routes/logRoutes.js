@@ -40,6 +40,22 @@ module.exports = (app) => {
         next();
     }
 
+    //return object for new log given fields from req.body
+    const makeLog = (logData, userID) => {
+        const {name, description, address, lng, lat, image} = logData;
+        const logToMake = {
+            name,
+            description,
+            location: {
+                coordinates: [lng, lat],
+                address
+            },
+            image: image ? image: 'placeholder.jpg',
+            author: userID
+        };
+        return logToMake;
+    }
+
     //save new LogEntry record to DB
     app.post(
         '/api/add',
@@ -47,16 +63,7 @@ module.exports = (app) => {
         resizeAndSave,
         async (req, res) => {
             //lng then lat inside coordinates array
-            const logToMake = {
-                name: req.body.name,
-                description: req.body.description,
-                location: {
-                    coordinates: [req.body.lng, req.body.lat],
-                    address: req.body.address
-                },
-                image: req.body.image,
-                author: req.user._id
-            };
+            const logToMake = makeLog(req.body, req.user._id);
             const log = await new LogEntry(logToMake).save();
             res.redirect('/');
         }
@@ -80,4 +87,19 @@ module.exports = (app) => {
             res.send(matchedLog);
         }
     );
+
+    
+    
+    //update a LogEntry in our DB
+    app.post(
+        '/api/edit',
+        upload.single('image'),
+        resizeAndSave,
+        async (req, res) => {
+            const logToMake = makeLog(req.body, req.user._id);
+            const editedLog = await LogEntry.findOneAndUpdate({_id: req.body.log_id}, logToMake, {new:true}).exec();
+            res.redirect('/');
+        }
+    );
+    
 }

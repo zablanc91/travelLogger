@@ -26,6 +26,7 @@ class App extends React.Component{
                         <Route exact path='/' component={MapDisplay} />
                         <Route exact path='/logs' component={ListLogs} />
                         <Route exact path='/logs/:slug' component={ShowLog} />
+                        <Route exact path='/logs/:slug/edit' component={AddLog} />
                     </div>
                 </BrowserRouter>
             </div>

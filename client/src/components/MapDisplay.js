@@ -30,6 +30,7 @@ class MapDisplay extends React.Component{
         });
     }
 
+    //for Popup,need to add closeOnClick={false} in order to let user click Link inside
     renderPopup(){
         return(
             <Popup latitude={this.props.selectedLog.location.coordinates[1]} longitude={this.props.selectedLog.location.coordinates[0]} 
