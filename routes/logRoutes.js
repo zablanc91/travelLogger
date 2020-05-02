@@ -88,8 +88,6 @@ module.exports = (app) => {
         }
     );
 
-    
-    
     //update a LogEntry in our DB
     app.post(
         '/api/edit',
@@ -99,6 +97,23 @@ module.exports = (app) => {
             const logToMake = makeLog(req.body, req.user._id);
             const editedLog = await LogEntry.findOneAndUpdate({_id: req.body.log_id}, logToMake, {new:true}).exec();
             res.redirect('/');
+        }
+    );
+
+    //delete a LogEntry 
+    app.delete(
+        '/api/logs/:slug/delete',
+        async(req, res) => {
+            try {
+                const slugToName = req.params.slug.split('_').join(' ');
+                await LogEntry.deleteOne({ name: slugToName });
+                console.log('deleted successfully');
+                req.method = 'GET';
+            res.redirect('/');
+            }
+            catch(e){
+                console.log(e);
+            }
         }
     );
     

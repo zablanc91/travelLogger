@@ -29,4 +29,13 @@
 
 .log_img img {
     max-width: 100%;
+    margin: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+.log_button {
+    margin: 0 12px 0;
 }

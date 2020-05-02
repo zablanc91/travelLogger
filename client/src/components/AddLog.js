@@ -90,7 +90,7 @@ const AddLog = (props) => {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row hidden">
                     <div className="input-field col s12">
                         <input id="log_id" type="text" name="log_id" defaultValue={props.location.formProps ? props.location.formProps.log_id : ""} />
                         <label className="active" htmlFor="log_id">ID</label>
