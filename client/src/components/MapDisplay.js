@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 class MapDisplay extends React.Component{
     componentDidMount(){
         this.props.fetchLogs();
+        console.log('are we in dev?', process.env.NODE_ENV);
     }
 
     //display markers on map for each log, on click set as selected log for to display popup
