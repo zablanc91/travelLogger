@@ -1,5 +1,5 @@
 module.exports = {
-    placesAPI: process.env.PLACE_API,
+    placesAPI: process.env.PLACES_API,
     mapsAPI: process.env.MAPS_API,
     mapsAPIToken: process.env.MAPS_API_TOKEN,
     mapboxToken: process.env.MAPBOX_TOKEN
