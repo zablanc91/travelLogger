@@ -43,7 +43,7 @@ class ShowLog extends React.Component{
                 <button>
                     <a className="modal-trigger" data-target="log_modal"
                                 >
-                        Modal
+                        Delete
                     </a>
                 </button>
 

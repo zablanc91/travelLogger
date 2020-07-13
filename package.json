@@ -4,10 +4,10 @@
   "description": "full stack project to save entries of locations and plot them on map",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "concurrently \"npm run server \" \"npm run client\" ",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server \" \"npm run client\" "
+    "dev": "NODE_ENV='dev' concurrently \"npm run server \" \"npm run client\" "
   },
   "author": "",
   "license": "ISC",

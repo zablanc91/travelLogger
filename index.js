@@ -3,6 +3,7 @@ const keys = require('./config/keys');
 const app = express();
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const PORT = (process.env.PORT || 2020);
 
 //import models
 //need to define User collection before requiring passport.js since it uses Users!
@@ -39,4 +40,4 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/logRoutes')(app);
 
-app.listen(2020);
+app.listen(PORT);
