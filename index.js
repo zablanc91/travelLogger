@@ -4,6 +4,7 @@ const app = express();
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const PORT = (process.env.PORT || 2020);
+const path = require('path');
 
 //import models
 //need to define User collection before requiring passport.js since it uses Users!
@@ -39,5 +40,11 @@ app.use(passport.session());
 //let routes have access to app
 require('./routes/authRoutes')(app);
 require('./routes/logRoutes')(app);
+
+app.use(express.static(path.join(__dirname, "client", "build")))
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT);

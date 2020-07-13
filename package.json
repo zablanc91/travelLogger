@@ -4,7 +4,8 @@
   "description": "full stack project to save entries of locations and plot them on map",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run server \" \"npm run client\" ",
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "server": "node index.js",
     "client": "npm run start --prefix client",
     "dev": "NODE_ENV='dev' concurrently \"npm run server \" \"npm run client\" "
