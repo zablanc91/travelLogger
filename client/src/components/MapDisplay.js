@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { mapboxToken } from '../config/googleKeys';
+import { mapboxToken, placesAPI } from '../config/googleKeys';
 import { changeViewport, fetchLogs, setSelectedLog } from '../actions/';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import './index.css';
@@ -10,6 +10,8 @@ class MapDisplay extends React.Component{
     componentDidMount(){
         this.props.fetchLogs();
         console.log('are we in dev?', process.env.NODE_ENV);
+        console.log('mp:': mapboxToken);
+        console.log('pl:', placesApi);
     }
 
     //display markers on map for each log, on click set as selected log for to display popup
