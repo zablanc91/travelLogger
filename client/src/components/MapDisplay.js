@@ -10,7 +10,7 @@ class MapDisplay extends React.Component{
     componentDidMount(){
         this.props.fetchLogs();
         console.log('are we in dev?', process.env.NODE_ENV);
-        console.log('mp:': mapboxToken);
+        console.log('mp:', mapboxToken);
         console.log('pl:', placesApi);
     }
 
