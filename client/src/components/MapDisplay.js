@@ -10,8 +10,8 @@ class MapDisplay extends React.Component{
     componentDidMount(){
         this.props.fetchLogs();
         console.log('are we in dev?', process.env.NODE_ENV);
-        console.log('mp:', mapboxToken);
-        console.log('pl:',placesAPI);
+        console.log('MP:', process.env.MAPBOX_TOKEN);
+        console.log(process.env);
     }
 
     //display markers on map for each log, on click set as selected log for to display popup
