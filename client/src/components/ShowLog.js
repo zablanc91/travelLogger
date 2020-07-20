@@ -16,8 +16,11 @@ class ShowLog extends React.Component{
     //allow only the user who created these logs to edit or delete
     renderUserOptions() {
         let {slug} = this.props.match.params;
-        let {name, description, location, image, _id} = this.props.matchedLog;
+        let {name, description, location, image, _id, author} = this.props.matchedLog;
 
+        if(this.props.auth._id != author){
+            return null;
+        }
         return (
             <div>
                 <button className="log_button" >
@@ -104,8 +107,8 @@ class ShowLog extends React.Component{
     }
 }
 
-const mapStateToProps = ({ matchedLog }) => {
-    return { matchedLog };
+const mapStateToProps = ({ matchedLog, auth }) => {
+    return { matchedLog, auth };
 }
 
 export default connect(mapStateToProps, { getLogBySlug } )(ShowLog);

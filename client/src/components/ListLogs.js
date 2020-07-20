@@ -26,7 +26,7 @@ class ListLogs extends React.Component{
             <div className="row" >
                 {this.props.logs.map(log => {
                     return(
-                        <div className="col s12 m6">
+                        <div className="col s12 m6" key={log._id}>
                             <Link to={`/logs/${this.nameToURLString(log.name)}`} >
                                 <div className="card" > 
                                     <div className="card-image">
